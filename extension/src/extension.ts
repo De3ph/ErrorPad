@@ -1,13 +1,15 @@
 import * as vscode from "vscode"
-import { showInfoMessage } from "./functions/atoms"
-import { onDocumentSave } from "./functions/molecules"
+import {
+  checkCredentialsOnStartup,
+  onDocumentSave
+} from "./functions/molecules"
 
-vscode.workspace.onDidSaveTextDocument((document: vscode.TextDocument) => {
-    onDocumentSave()
-  })
+vscode.workspace.onDidSaveTextDocument((_: vscode.TextDocument) => {
+  onDocumentSave()
+})
 
-export function activate(context: vscode.ExtensionContext) {
-    showInfoMessage('Hellllo')
+export async function activate(context: vscode.ExtensionContext) {
+  await checkCredentialsOnStartup(context)
 }
 
 // This method is called when your extension is deactivated
