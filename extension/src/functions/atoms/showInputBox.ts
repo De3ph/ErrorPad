@@ -3,12 +3,14 @@ import { InputBoxOptions, window } from "vscode"
 const showInputBox = (
   title: string,
   placeHolder: string,
-  isPassword: boolean = false
+  isPassword: boolean = false,
+  defaultValue?: string
 ) => {
   const options: InputBoxOptions = {
     title: title,
     placeHolder: placeHolder,
     password: isPassword,
+    value: defaultValue ? defaultValue : undefined,
     validateInput: (value) => {
       // to check strings like "   " and "  xx " (have whitespace)
 
