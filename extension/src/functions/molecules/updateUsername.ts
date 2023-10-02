@@ -18,10 +18,14 @@ const updateUsername = async (ctx: ExtensionContext) => {
     showInfoMessage("Username cannot update. Please try again later.")
   }
 
-  saveToGlobalState(ctx, {
+  const res = await saveToGlobalState(ctx, {
     key: CONSTANTS.usernameKey,
     value: newUsername as string
   })
+
+  if (res) {
+    showInfoMessage("Username updated successfully.")
+  }
 }
 
 export default updateUsername

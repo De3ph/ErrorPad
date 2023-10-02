@@ -9,10 +9,14 @@ const updatePassword = async (ctx: ExtensionContext) => {
     showInfoMessage("Password cannot update. Please try again later.")
   }
 
-  saveToGlobalState(ctx, {
+  const res = await saveToGlobalState(ctx, {
     key: CONSTANTS.passwordKey,
     value: newPassword as string
   })
+
+  if (res) {
+    showInfoMessage("Username updated successfully.")
+  }
 }
 
 export default updatePassword
