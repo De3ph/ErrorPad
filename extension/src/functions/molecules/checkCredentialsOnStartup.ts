@@ -8,6 +8,10 @@ const checkCredentialsOnStartup = async (ctx: ExtensionContext) => {
   const isUsernameExists = globalState.get(CONSTANTS.usernameKey)
   const isPaswordExists = globalState.get(CONSTANTS.passwordKey)
 
+  if (isUsernameExists) {
+    showInfoMessage(`Welcome back ${isUsernameExists}`)
+  }
+
   if (!isUsernameExists) {
     const username = await showInputBox(
       "Enter your ErrorPad username: ",
