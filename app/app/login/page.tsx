@@ -1,6 +1,5 @@
-import Link from "next/link"
-import Messages from "./messages"
-import { Button } from "@/ui"
+import Link from 'next/link'
+import Messages from './messages'
 
 export default function Login() {
   return (
@@ -50,6 +49,7 @@ export default function Login() {
           placeholder='••••••••'
           required
         />
+<<<<<<< HEAD
 
         <Button color='green' type='submit'>
           Sign In
@@ -59,6 +59,17 @@ export default function Login() {
           Sign Up
         </Button>
 
+=======
+        <button className='bg-green-700 rounded px-4 py-2 text-white mb-2'>
+          Sign In
+        </button>
+        <button
+          formAction='/auth/sign-up'
+          className='border border-gray-700 rounded px-4 py-2 text-white mb-2'
+        >
+          Sign Up
+        </button>
+>>>>>>> b50a5f600c6304a34e039c006cbf739262c7ab95
         <Messages />
       </form>
     </div>

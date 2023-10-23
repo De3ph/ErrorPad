@@ -1,4 +1,3 @@
-import { Button } from "@/ui"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { cookies } from "next/headers"
 import Link from "next/link"
@@ -30,6 +29,7 @@ const resources = [
   }
 ]
 
+<<<<<<< HEAD
 const examples = [
   { type: "Client Components", src: "app/_examples/client-component/page.tsx" },
   { type: "Server Components", src: "app/_examples/server-component/page.tsx" },
@@ -37,6 +37,8 @@ const examples = [
   { type: "Route Handlers", src: "app/_examples/route-handler.ts" }
 ]
 
+=======
+>>>>>>> b50a5f600c6304a34e039c006cbf739262c7ab95
 export default async function Index() {
   const supabase = createServerComponentClient({ cookies })
 
@@ -56,8 +58,16 @@ export default async function Index() {
                 <LogoutButton />
               </div>
             ) : (
+<<<<<<< HEAD
               <Link href='/login'>
                 <Button>Login</Button>
+=======
+              <Link
+                href='/login'
+                className='py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover'
+              >
+                Login
+>>>>>>> b50a5f600c6304a34e039c006cbf739262c7ab95
               </Link>
             )}
           </div>
