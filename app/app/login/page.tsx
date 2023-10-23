@@ -49,17 +49,6 @@ export default function Login() {
           placeholder='••••••••'
           required
         />
-<<<<<<< HEAD
-
-        <Button color='green' type='submit'>
-          Sign In
-        </Button>
-
-        <Button variant='outlined' color='white' formAction='/auth/sign-up'>
-          Sign Up
-        </Button>
-
-=======
         <button className='bg-green-700 rounded px-4 py-2 text-white mb-2'>
           Sign In
         </button>
@@ -69,7 +58,6 @@ export default function Login() {
         >
           Sign Up
         </button>
->>>>>>> b50a5f600c6304a34e039c006cbf739262c7ab95
         <Messages />
       </form>
     </div>
