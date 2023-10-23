@@ -11,7 +11,7 @@ const showInputBox = (
     placeHolder: placeHolder,
     password: isPassword,
     value: defaultValue ? defaultValue : undefined,
-    validateInput: (value) => {
+    validateInput: (value:string) => {
       // to check strings like "   " and "  xx " (have whitespace)
 
       const trimmedValue = value.trim()
@@ -28,7 +28,7 @@ const showInputBox = (
     ignoreFocusOut: true
   }
 
-  const input = window.showInputBox(options).then((val) => val)
+  const input = window.showInputBox(options).then((val:string) => val)
 
   return input
 }
