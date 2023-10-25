@@ -20,10 +20,10 @@ devDependencies:
     specifier: ^1.82.0
     version: 1.82.0
   '@typescript-eslint/eslint-plugin':
-    specifier: ^6.4.1
+    specifier: ^6.7.2
     version: 6.7.2(@typescript-eslint/parser@6.7.2)(eslint@8.50.0)(typescript@5.2.2)
   '@typescript-eslint/parser':
-    specifier: ^6.4.1
+    specifier: ^6.7.2
     version: 6.7.2(eslint@8.50.0)(typescript@5.2.2)
   '@vscode/test-electron':
     specifier: ^2.3.4
@@ -32,7 +32,7 @@ devDependencies:
     specifier: ^0.19.3
     version: 0.19.3
   eslint:
-    specifier: ^8.47.0
+    specifier: ^8.50.0
     version: 8.50.0
   glob:
     specifier: ^10.3.3
@@ -44,7 +44,7 @@ devDependencies:
     specifier: ^9.4.4
     version: 9.4.4(typescript@5.2.2)(webpack@5.88.2)
   typescript:
-    specifier: ^5.1.6
+    specifier: ^5.2.2
     version: 5.2.2
   webpack:
     specifier: ^5.88.2
