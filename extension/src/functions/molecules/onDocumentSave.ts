@@ -1,14 +1,24 @@
 import {
   getDiagnostics,
   getCurrentDocumentURI,
+  filterDiagnostic,
+  preapreApiData,
+  getCurrentDocumentLangId
 } from "../atoms"
 
-const onDocumentSave = () => {
-  const diags = getDiagnostics(getCurrentDocumentURI())?.length
+import sessionStore from "../../stores/SessionStore"
 
-  // TODO: burada hataları kaydetmemiz lazım bir yerde, sonrasında extension deactive olduğunda api ile server e göndericek
+const onDocumentSave = async () => {
+  const diags = getDiagnostics(getCurrentDocumentURI())
 
-  console.log(`${diags} diagnostics detected.`)
+  const filteredDiags = filterDiagnostic(diags)
+
+  const data = preapreApiData(
+    filteredDiags,
+    getCurrentDocumentLangId() ?? "unknown"
+  )
+
+  sessionStore.append(data)
 }
 
 export default onDocumentSave
