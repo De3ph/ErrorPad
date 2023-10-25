@@ -28,7 +28,9 @@ const showInputBox = (
     ignoreFocusOut: true
   }
 
-  const input = window.showInputBox(options).then((val:string) => val)
+  const input = window
+    .showInputBox(options)
+    .then((val: string | undefined) => val)
 
   return input
 }
