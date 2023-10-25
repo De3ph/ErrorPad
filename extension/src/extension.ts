@@ -1,5 +1,5 @@
-import axios from "axios"
 import * as vscode from "vscode"
+import axios from "axios"
 import {
   checkCredentialsOnStartup,
   onDocumentSave,
@@ -7,7 +7,6 @@ import {
   updateUsername
 } from "./functions/molecules"
 import { CONSTANTS } from "./Constants"
-import sessionStore from "./stores/SessionStore"
 
 vscode.workspace.onDidSaveTextDocument((_: vscode.TextDocument) => {
   onDocumentSave()
@@ -27,8 +26,6 @@ export async function activate(context: vscode.ExtensionContext) {
       await updatePassword(context)
     }
   )
-
-  sessionStore.append("extension.ts")
 
   await checkCredentialsOnStartup(context)
 }
