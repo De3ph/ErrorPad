@@ -1,7 +1,7 @@
-import * as vscode from "vscode"
+import { ExtensionContext } from "vscode"
 
 const saveToGlobalState = (
-  ctx: vscode.ExtensionContext,
+  ctx: ExtensionContext,
   payload: {
     key: string
     value: string

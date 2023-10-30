@@ -1,5 +1,5 @@
 import { Diagnostic } from "vscode"
-import { AvailableLanguages, ErrorData } from "../../types"
+import { AvailableLanguages, Data, ErrorData } from "../../types"
 
 const preapreApiData = (
   diagnostic: Diagnostic[],
@@ -7,15 +7,18 @@ const preapreApiData = (
 ) => {
   const data = diagnostic.map<ErrorData>((item) => {
     return {
-      lang: languageId,
-      code:
-        typeof item.code === "object"
-          ? (item.code.value as string)
-          : (item.code as string),
-      message: item.message,
-      // line starts from 0
-      line: item.range.end.line + 1,
-      rawData: item
+      date: new Date().toLocaleString(),
+      data: {
+        lang: languageId,
+        code:
+          typeof item.code === "object"
+            ? (item.code.value as string)
+            : (item.code as string),
+        message: item.message,
+        // line starts from 0
+        line: item.range.end.line + 1,
+        rawData: item
+      }
     } satisfies ErrorData
   })
 

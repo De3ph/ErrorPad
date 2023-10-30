@@ -7,6 +7,7 @@ import {
 } from "../atoms"
 
 import sessionStore from "../../stores/SessionStore"
+import { ErrorData } from "../../types"
 
 const onDocumentSave = async () => {
   const diags = getDiagnostics(getCurrentDocumentURI())
@@ -16,9 +17,11 @@ const onDocumentSave = async () => {
   const data = preapreApiData(
     filteredDiags,
     getCurrentDocumentLangId() ?? "unknown"
-  )
+  ) satisfies ErrorData[]
 
   sessionStore.append(data)
+
+  console.log(sessionStore.getStore())
 }
 
 export default onDocumentSave
