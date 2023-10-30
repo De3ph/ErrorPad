@@ -1,7 +1,7 @@
 import { ErrorData } from "../types/index"
 
 export class SessionStore {
-  store: Array<ErrorData[]> = []
+  store: Array<ErrorData> = []
 
   constructor() {}
 
