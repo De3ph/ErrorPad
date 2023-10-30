@@ -1,11 +1,11 @@
 import { ErrorData } from "../types/index"
 
 export class SessionStore {
-  store: Array<ErrorData | any> = []
+  store: Array<ErrorData[]> = []
 
   constructor() {}
 
-  append = (data: ErrorData | any) => {
+  append = (data: ErrorData[]) => {
     this.store = this.store.concat(data)
   }
 
