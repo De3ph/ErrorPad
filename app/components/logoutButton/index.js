@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function LogoutButton() {
   return (
     <form action="/auth/sign-out" method="post">
@@ -5,5 +7,5 @@ export default function LogoutButton() {
         Logout
       </button>
     </form>
-  )
+  );
 }
