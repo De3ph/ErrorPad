@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import Link from "next/link"
 import {
   Card,
   Typography,
@@ -7,77 +6,59 @@ import {
   ListItem,
   ListItemPrefix,
   ListItemSuffix,
-  Chip,
-} from "@/ui/index";
+  Chip
+} from "@/ui/index"
+
 import {
-  PresentationChartBarIcon,
-  ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
-  PowerIcon,
-} from "@heroicons/react/24/solid";
-import logoPng from "@/images/logo2.png";
+  IconInbox,
+  IconLogout2,
+  IconReportAnalytics,
+  IconUserCircle,
+  IconSettings
+} from "@tabler/icons-react"
 
 export default function Sidebar() {
+  const iconSize = "h-5 w-5"
   return (
-    <Card className=" w-full max-w-[20rem] p-4 shadow-none rounded-none rounded-b-xl shadow-md">
-      <div className="mb-2 p-4 flex justify-center ">
-        <Image
-          className="h-46 w-46  object-cover object-center"
-          src={logoPng}
-          alt="logo"
-        />
-      </div>
+    <Card className='w-full h-full p-4 rounded-none shadow-md bg-opacity-20'>
       <List>
-        <Link href="/adminDashboard">
+        <Link href='/adminDashboard'>
           <ListItem>
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <IconReportAnalytics className={iconSize} />
             </ListItemPrefix>
             Admin Dashboard
           </ListItem>
         </Link>
+
         <ListItem>
           <ListItemPrefix>
-            <ShoppingBagIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          E-Commerce
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
+            <IconInbox className={iconSize} />
           </ListItemPrefix>
           Inbox
           <ListItemSuffix>
             <Chip
-              value="14"
-              size="sm"
-              variant="ghost"
-              color="blue-gray"
-              className="rounded-full"
+              value='14'
+              size='sm'
+              variant='ghost'
+              color='blue-gray'
+              className='rounded-full'
             />
           </ListItemSuffix>
         </ListItem>
         <ListItem>
           <ListItemPrefix>
-            <UserCircleIcon className="h-5 w-5" />
+            <IconUserCircle className={iconSize} />
           </ListItemPrefix>
           Profile
         </ListItem>
         <ListItem>
           <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
+            <IconSettings className={iconSize} />
           </ListItemPrefix>
           Settings
         </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Log Out
-        </ListItem>
       </List>
     </Card>
-  );
+  )
 }

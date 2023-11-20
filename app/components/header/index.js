@@ -1,30 +1,35 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import LogoutButton from "@/components/logoutButton";
+import { LogoutButton, LoginButton } from "@/components/auth"
+import Image from "next/image"
+import logoPng from "@/images/logo2.png"
 
 async function Header() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient({ cookies })
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { user }
+  } = await supabase.auth.getUser()
 
   return (
-    <div className="p-5 flex justify-end items-center bg-white shadow-sm text-gray-800">
+    <div className='w-full py-1 px-5 flex justify-between items-center bg-white bg-opacity-50 shadow-sm text-gray-800'>
+      <div className='mb-2 px-4 flex justify-center '>
+        <Image
+          className='w-24 object-cover object-center'
+          src={logoPng}
+          alt='logo'
+        />
+      </div>
+
       {user ? (
-        <div className="flex items-center gap-4">
+        <div className='flex items-center gap-4'>
           Hey, {user.email}!
           <LogoutButton />
         </div>
       ) : (
-        <div
-          href="/login"
-          className="py-2 px-4 rounded-md no-underline bg-gray-500 hover:bg-btn-background-hover"
-        >
-          Login
-        </div>
+        <LoginButton />
       )}
     </div>
-  );
+  )
 }
 
 export default Header;
