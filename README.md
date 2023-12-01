@@ -1,5 +1,7 @@
-# Bitirme Tezi Projesi
-![thesis](https://github.com/De3ph/final-thesis/assets/62203579/bfa1396c-b3be-474c-b746-3468a89f091b)
+# Final Thesis Project
+## VS Code Extension + Next.js + Supabase + Material Tailwind
+
+![architecture](https://github.com/De3ph/final-thesis/assets/62203579/275ec2b0-af46-47a0-b63a-8ea9e2b824e0)
 
 ## Description
 

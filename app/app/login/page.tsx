@@ -1,5 +1,6 @@
-import Link from 'next/link'
-import Messages from './messages'
+import Link from "next/link"
+import Messages from "./messages"
+import { Button } from "@/ui"
 
 export default function Login() {
   return (
@@ -27,7 +28,6 @@ export default function Login() {
 
       <form
         className='flex-1 flex flex-col w-full justify-center gap-2 text-foreground'
-        action='/auth/sign-in'
         method='post'
       >
         <label className='text-md' htmlFor='email'>
@@ -49,15 +49,12 @@ export default function Login() {
           placeholder='••••••••'
           required
         />
-        <button className='bg-green-700 rounded px-4 py-2 text-white mb-2'>
+        <Button formAction='/auth/sign-in' type='submit'>
           Sign In
-        </button>
-        <button
-          formAction='/auth/sign-up'
-          className='border border-gray-700 rounded px-4 py-2 text-white mb-2'
-        >
+        </Button>
+        <Button color='green' formAction='/auth/sign-up' type='submit'>
           Sign Up
-        </button>
+        </Button>
         <Messages />
       </form>
     </div>
