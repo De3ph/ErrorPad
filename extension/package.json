@@ -3,6 +3,9 @@
   "displayName": "errorpad",
   "description": "save errors",
   "version": "0.0.1",
+  "repository": {
+    "url": "https://github.com/De3ph/final-thesis"
+  },
   "engines": {
     "vscode": "^1.82.0"
   },
@@ -28,6 +31,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "vsce:package": "pnpm vsce package --no-dependencies",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
     "esbuild": "npm run esbuild-base -- --sourcemap",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
