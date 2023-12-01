@@ -7,6 +7,8 @@ import {
   updateUsername
 } from "./functions/molecules"
 import { CONSTANTS } from "./Constants"
+import sessionStore from "./stores/SessionStore"
+import sendDataToServer from "./functions/atoms/sendDataToServer"
 
 vscode.workspace.onDidSaveTextDocument((_: vscode.TextDocument) => {
   onDocumentSave()
@@ -32,7 +34,5 @@ export async function activate(context: vscode.ExtensionContext) {
 
 // This method is called when your extension is deactivated
 export function deactivate() {
-  axios.post("http://localhost:3000/api", {
-    msg: "hi"
-  })
+  sendDataToServer(sessionStore.getStore())
 }

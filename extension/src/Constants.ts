@@ -6,7 +6,8 @@ const CONSTANTS = Object.freeze({
   commands: {
     updateUsername: "errorpad.updateUsername",
     updatePassword: "errorpad.updatePassword"
-  }
+  },
+  apiUrl: "http://localhost:3000/api"
 })
 
 export { CONSTANTS }
