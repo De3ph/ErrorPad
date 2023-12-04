@@ -1,5 +1,4 @@
 import * as vscode from "vscode"
-import axios from "axios"
 import {
   checkCredentialsOnStartup,
   onDocumentSave,
