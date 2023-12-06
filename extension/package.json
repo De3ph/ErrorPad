@@ -17,6 +17,10 @@
     "onLanguage:typescript",
     "onLanguage:javascript"
   ],
+  "extensionDependencies": [
+    "ms-python.python",
+    "dbaeumer.vscode-eslint"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
