@@ -1,26 +1,22 @@
 import { ExtensionContext } from "vscode"
 import { showInfoMessage, showInputBox } from "../atoms"
 import { CONSTANTS } from "../../Constants"
+import sessionStore from "../../stores/SessionStore"
 
 const checkCredentialsOnStartup = async (ctx: ExtensionContext) => {
   const globalState = ctx.globalState
 
-  const isUsernameExists = globalState.get(CONSTANTS.usernameKey)
+  const isEmailExists = globalState.get(CONSTANTS.emailKey)
   const isPaswordExists = globalState.get(CONSTANTS.passwordKey)
 
-  if (isUsernameExists) {
-    showInfoMessage(`Welcome back ${isUsernameExists}`)
-  }
+  if (isEmailExists) {
+    showInfoMessage(`Errorpad is active...`)
+  } else {
+    const email = await showInputBox("Enter your ErrorPad email: ", "Email")
 
-  if (!isUsernameExists) {
-    const username = await showInputBox(
-      "Enter your ErrorPad username: ",
-      "Username"
-    )
+    globalState.update(CONSTANTS.emailKey, JSON.stringify(email))
 
-    globalState.update(CONSTANTS.usernameKey, JSON.stringify(username))
-
-    showInfoMessage("Username saved!")
+    showInfoMessage("Email saved!")
   }
 
   if (!isPaswordExists) {
@@ -34,6 +30,9 @@ const checkCredentialsOnStartup = async (ctx: ExtensionContext) => {
 
     showInfoMessage("Password saved!")
   }
+
+  sessionStore.setEmail(globalState.get(CONSTANTS.emailKey) as string)
+  sessionStore.setPassword(globalState.get(CONSTANTS.passwordKey) as string)
 }
 
 export default checkCredentialsOnStartup

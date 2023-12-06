@@ -11,7 +11,7 @@ const filterDiagnostic = (diagnostic: Diagnostic[]) => {
     sessionStore.getStore(),
     // +1 olmasının sebebi line ın 0 dan başlaması ama store da 1 den başlaması
     (newDiag: Diagnostic, storeVal: ErrorData) =>
-      isEqual(newDiag.range.end.line + 1, storeVal.data.line)
+      isEqual(newDiag.range.end.line + 1, storeVal.line)
   )
 
   return diff

@@ -21,7 +21,6 @@ const onDocumentSave = async () => {
 
   sessionStore.append(data)
 
-  console.log(sessionStore.getStore())
 }
 
 export default onDocumentSave

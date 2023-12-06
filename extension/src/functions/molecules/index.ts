@@ -1,11 +1,11 @@
 import onDocumentSave from "./onDocumentSave"
 import checkCredentialsOnStartup from "./checkCredentialsOnStartup"
-import updateUsername from "./updateUsername"
+import updateEmail from "./updateEmail"
 import updatePassword from "./updatePassword"
 
 export {
   onDocumentSave,
   checkCredentialsOnStartup,
-  updateUsername,
+  updateEmail,
   updatePassword
 }

@@ -15,7 +15,7 @@ const updatePassword = async (ctx: ExtensionContext) => {
   })
 
   if (res) {
-    showInfoMessage("Username updated successfully.")
+    showInfoMessage("Password updated successfully.")
   }
 }
 
