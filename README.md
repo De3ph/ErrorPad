@@ -1,7 +1,7 @@
 # Final Thesis Project
 ## VS Code Extension + Next.js + Supabase + Material Tailwind
 
-![architecture](https://github.com/De3ph/final-thesis/assets/62203579/275ec2b0-af46-47a0-b63a-8ea9e2b824e0)
+![architecture](https://github.com/De3ph/final-thesis/assets/62203579/2ac30e9a-41d3-4f73-a296-2cf418408334)
 
 ## Description
 
