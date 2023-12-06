@@ -14,18 +14,23 @@
   ],
   "activationEvents": [
     "onLanguage:python",
-    "onLanguage:typescript"
+    "onLanguage:typescript",
+    "onLanguage:javascript"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "errorpad.updateUsername",
-        "title": "ErrorPad : Update Username"
+        "command": "errorpad.updateEmail",
+        "title": "ErrorPad : Update Email"
       },
       {
         "command": "errorpad.updatePassword",
         "title": "ErrorPad : Update Password"
+      },
+      {
+        "command": "errorpad.pushDatas",
+        "title": "ErrorPad : Push Datas to Server"
       }
     ]
   },

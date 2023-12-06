@@ -4,13 +4,14 @@ export type AvailableLanguages = "python" | "typescript" | "unknown"
 
 export type ErrorData = {
   date: string
-  data: Data
-}
-
-export type Data = {
+  source: string
   lang: AvailableLanguages
   code: string
   message: string
   line: number
-  rawData?: Diagnostic
+}
+
+export type Credentials = {
+  email: string | null
+  password: string | null
 }
