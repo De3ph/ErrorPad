@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 import {
   Card,
   Typography,
@@ -6,23 +6,32 @@ import {
   ListItem,
   ListItemPrefix,
   ListItemSuffix,
-  Chip
-} from "@/ui/index"
+  Chip,
+} from "@/ui/index";
 
 import {
   IconInbox,
   IconLogout2,
   IconReportAnalytics,
   IconUserCircle,
-  IconSettings
-} from "@tabler/icons-react"
+  IconSettings,
+  IconBug,
+} from "@tabler/icons-react";
 
 export default function Sidebar() {
-  const iconSize = "h-5 w-5"
+  const iconSize = "h-5 w-5";
   return (
-    <Card className='w-full h-full p-4 rounded-none shadow-md bg-opacity-20'>
+    <Card className="w-full h-full p-4 rounded-none shadow-md bg-opacity-20">
       <List>
-        <Link href='/adminDashboard'>
+        <Link href="/myErrors">
+          <ListItem>
+            <ListItemPrefix>
+              <IconBug className={iconSize} />
+            </ListItemPrefix>
+            My Errors
+          </ListItem>
+        </Link>
+        <Link href="/adminDashboard">
           <ListItem>
             <ListItemPrefix>
               <IconReportAnalytics className={iconSize} />
@@ -38,11 +47,11 @@ export default function Sidebar() {
           Inbox
           <ListItemSuffix>
             <Chip
-              value='14'
-              size='sm'
-              variant='ghost'
-              color='blue-gray'
-              className='rounded-full'
+              value="14"
+              size="sm"
+              variant="ghost"
+              color="blue-gray"
+              className="rounded-full"
             />
           </ListItemSuffix>
         </ListItem>
@@ -60,5 +69,5 @@ export default function Sidebar() {
         </ListItem>
       </List>
     </Card>
-  )
+  );
 }

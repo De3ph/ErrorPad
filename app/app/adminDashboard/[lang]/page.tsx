@@ -1,7 +1,6 @@
 import React from "react";
 import EmployeeTable from "../employeeTable";
 import data from "@/employees.json";
-import { Employee } from "@/app/types/Employee";
 
 const langs = [
   {
