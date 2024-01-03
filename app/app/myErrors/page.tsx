@@ -1,18 +1,28 @@
 import React from "react"
-import { Card, CardBody, CardFooter } from "@/ui/index"
+
+import {
+  SupabaseClient,
+  createServerComponentClient
+} from "@supabase/auth-helpers-nextjs"
+import { cookies } from "next/headers"
+export const dynamic = "force-dynamic"
+
+import { Card } from "@/ui/index"
 import BarChartComponent from "@/components/barchart"
-import { ErrorData, Data } from "../types/Error"
+import { Data } from "../types/Error"
 import Languages from "./languages"
-import { supabase } from "@/app/util/supabaseClient"
 
 type ChartData = {
   name: string
   count: number
 }
 
-async function fetchData() {
+async function fetchData(supabase: SupabaseClient, userEmail?: string) {
   try {
-    let { data: errors, error } = await supabase.from("errors").select("*")
+    let { data: errors, error } = await supabase
+      .from("errors")
+      .select("*")
+      .eq("user_email", userEmail)
     return errors
   } catch (error) {
     console.log(error)
@@ -20,7 +30,16 @@ async function fetchData() {
 }
 
 async function myErrors() {
-  const errors = await fetchData()
+  const supabase = createServerComponentClient({ cookies })
+
+  const session = await supabase.auth.getSession()
+
+  if (session.data.session === null) {
+    return <div>Unauthorized</div>
+  }
+
+  const errors = await fetchData(supabase, session.data.session.user.email)
+
   let errorCount: ChartData[] = []
 
   errors?.forEach((error: Data) => {

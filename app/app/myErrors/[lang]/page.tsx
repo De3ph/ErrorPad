@@ -1,10 +1,17 @@
 import React from "react"
+
+import {
+  SupabaseClient,
+  createServerComponentClient
+} from "@supabase/auth-helpers-nextjs"
+import { cookies } from "next/headers"
+export const dynamic = "force-dynamic"
+
 import pythonLogo from "@/images/python.png"
 import csharpLogo from "@/images/csharp.png"
 import javaLogo from "@/images/java.png"
 import jsLogo from "@/images/js.png"
 import Image from "next/image"
-import { supabase } from "@/app/util/supabaseClient"
 import { Typography } from "@/ui/index"
 
 type ChartData = {
@@ -14,9 +21,9 @@ type ChartData = {
 
 const LangList = [
   {
-    lang: "python",
+    lang: "Python",
     image: pythonLogo,
-    param: "py"
+    param: "python"
   },
   {
     lang: "C#",
@@ -36,10 +43,11 @@ const LangList = [
 ]
 
 const getLangImage = (lang: string) => {
-  return LangList.find((_) => _.lang == lang)?.image
+  return LangList.find((_) => _.param.toLowerCase() == lang.toLowerCase())
+    ?.image
 }
 
-async function fetchData(lang: string) {
+async function fetchData(supabase: SupabaseClient, lang: string) {
   try {
     let { data: errors, error } = await supabase
       .from("errors")
@@ -52,10 +60,12 @@ async function fetchData(lang: string) {
 }
 
 async function MyErrorsInLang({ params }: any) {
-  const errors = await fetchData(params.lang)
-  console.log("🚀 ~ file: page.tsx:54 ~ MyErrorsInLang ~ errors:", errors)
+  const supabase = createServerComponentClient({ cookies })
 
-  var lang: any = LangList.find((lang) => params.lang == lang.param)
+  const errors = await fetchData(supabase, params.lang)
+
+  let lang: any = LangList.find((lang) => params.lang == lang.param)
+
   const image = getLangImage(params.lang)
   let errorCount: ChartData[] = []
 

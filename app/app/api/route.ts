@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { cookies } from "next/headers"
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
+import { decode } from "js-base64"
+import { Data } from "../types/Error"
 
 export const dynamic = "force-dynamic"
 
@@ -14,19 +16,49 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const supabase = createRouteHandlerClient({ cookies })
 
-  const body = await req.json()
+  const auth = req.headers.get("authorization")?.replace("Basic", "").trim()
+  // [email, password]
+  let [email, password] = decode(auth ? auth : "").split(":")
 
-  const { data, error } = await supabase
-    .from("errors")
-    .insert(body?.data)
-    .select()
+  password = password.replaceAll('"', "")
+  email = email.replaceAll('"', "")
 
-  if (error) {
-    console.log("🚀 ~ file: route.ts:23 ~ POST ~ error:", error)
-    return NextResponse.json({
-      message: "failed"
+  const body: { data: Data[] } = await req.json()
+
+  const { data: isLoggedIn } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  })
+
+  if (isLoggedIn.user) {
+    let updatedData = body?.data.slice().map((item) => {
+      let updatedItem = Object()
+      Object.assign(updatedItem, item)
+      updatedItem["user_email"] = email
+      return updatedItem
     })
+
+    const { data, error } = await supabase
+      .from("errors")
+      .insert(updatedData)
+      .select()
+
+    if (error) {
+      console.log("🚀 ~ file: route.ts:48 ~ POST ~ error:", error)
+    }
   }
+
+  // const { data, error } = await supabase
+  //   .from("errors")
+  //   .insert(body?.data)
+  //   .select()
+
+  // if (error) {
+  //   console.log("🚀 ~ file: route.ts:23 ~ POST ~ error:", error)
+  //   return NextResponse.json({
+  //     message: "failed"
+  //   })
+  // }
 
   console.log("ok")
 
