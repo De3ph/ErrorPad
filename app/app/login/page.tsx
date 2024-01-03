@@ -4,8 +4,8 @@ import { Button } from "@/ui"
 
 export default function Login() {
   return (
-    <div className='flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2'>
-      <Link
+    <div className='flex w-full px-8 justify-center gap-2'>
+      {/* <Link
         href='/'
         className='absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm'
       >
@@ -24,37 +24,42 @@ export default function Login() {
           <polyline points='15 18 9 12 15 6' />
         </svg>{" "}
         Back
-      </Link>
+      </Link> */}
 
       <form
-        className='flex-1 flex flex-col w-full justify-center gap-2 text-foreground'
+        className='flex flex-col justify-center gap-2 text-foreground w-full max-w-md'
         method='post'
       >
-        <label className='text-md' htmlFor='email'>
-          Email
-        </label>
-        <input
-          className='rounded-md px-4 py-2 bg-inherit border mb-6'
-          name='email'
-          placeholder='you@example.com'
-          required
-        />
-        <label className='text-md' htmlFor='password'>
-          Password
-        </label>
-        <input
-          className='rounded-md px-4 py-2 bg-inherit border mb-6'
-          type='password'
-          name='password'
-          placeholder='••••••••'
-          required
-        />
-        <Button formAction='/auth/sign-in' type='submit'>
-          Sign In
-        </Button>
-        <Button color='green' formAction='/auth/sign-up' type='submit'>
-          Sign Up
-        </Button>
+        <div className='flex flex-col justify-center gap-2'>
+          <label className='text-md' htmlFor='email'>
+            Email
+          </label>
+          <input
+            className='rounded-md px-4 py-2 bg-inherit border mb-6'
+            name='email'
+            placeholder='you@example.com'
+            required
+          />
+          <label className='text-md' htmlFor='password'>
+            Password
+          </label>
+          <input
+            className='rounded-md px-4 py-2 bg-inherit border mb-6'
+            type='password'
+            name='password'
+            placeholder='••••••••'
+            required
+          />
+        </div>
+
+        <div className='w-3/4 mx-auto flex flex-col gap-2 justify-center'>
+          <Button formAction='/auth/sign-in' type='submit'>
+            Sign In
+          </Button>
+          <Button color='green' formAction='/auth/sign-up' type='submit'>
+            Sign Up
+          </Button>
+        </div>
         <Messages />
       </form>
     </div>

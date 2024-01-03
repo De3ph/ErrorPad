@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-const withMT = require("@material-tailwind/react/utils/withMT")
+const withMT = require("@material-tailwind/react/utils/withMT");
 module.exports = withMT({
-  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}", // Note the addition of the `app` directory.
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       colors: {
@@ -9,10 +13,10 @@ module.exports = withMT({
         foreground: "hsl(var(--foreground))",
         btn: {
           background: "hsl(var(--btn-background))",
-          "background-hover": "hsl(var(--btn-background-hover))"
-        }
-      }
-    }
+          "background-hover": "hsl(var(--btn-background-hover))",
+        },
+      },
+    },
   },
-  plugins: []
-})
+  plugins: [],
+});
