@@ -2,34 +2,34 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { List, ListItem } from "@/ui/index";
-import pythonLogo from "@/images/Python-logo-notext.svg.png";
-import csharpLogo from "@/images/Logo_C_sharp.svg.png";
-import javaLogo from "@/images/1200px-Java_Logo.svg.png";
-import jsLogo from "@/images/JavaScript-logo.png";
+import { List, ListItem } from "@/ui/index"
+import pythonLogo from "@/images/python.png"
+import csharpLogo from "@/images/csharp.png"
+import javaLogo from "@/images/java.png"
+import jsLogo from "@/images/js.png"
 
 const LangList = [
   {
-    lang: "Python",
+    lang: "python",
     image: pythonLogo,
-    param: "py",
+    param: "python"
   },
   {
     lang: "C#",
     image: csharpLogo,
-    param: "csharp",
+    param: "csharp"
   },
   {
     lang: "Java",
     image: javaLogo,
-    param: "java",
+    param: "java"
   },
   {
     lang: "JavaScript",
     image: jsLogo,
-    param: "js",
-  },
-];
+    param: "js"
+  }
+]
 
 function Languages() {
   return (

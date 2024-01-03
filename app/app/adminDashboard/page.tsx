@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/ui/index";
 import Link from "next/link";
 import Image from "next/image";
-import pylogo from "@/images/Python-logo-notext.svg.png";
+import pylogo from "@/images/python.png"
 
 function adminDashboard() {
   return (
