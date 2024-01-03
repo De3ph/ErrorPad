@@ -23,13 +23,11 @@ async function myErrors() {
   const errors = await fetchData()
   let errorCount: ChartData[] = []
 
-  errors?.forEach((_: any) => {
-    _?.errors?.data.forEach((error: Data) => {
-      var index = errorCount.findIndex(({ name }) => name == error?.lang)
-      index == -1
-        ? errorCount.push({ name: error?.lang, count: 1 })
-        : errorCount[index].count++
-    })
+  errors?.forEach((error: Data) => {
+    var index = errorCount.findIndex(({ name }) => name == error?.lang)
+    index == -1
+      ? errorCount.push({ name: error?.lang, count: 1 })
+      : errorCount[index].count++
   })
 
   return (
