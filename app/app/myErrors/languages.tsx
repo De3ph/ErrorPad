@@ -34,10 +34,14 @@ const LangList = [
 function Languages() {
   return (
     <div>
-      <List className="grid grid-cols-2 md:grid-cols-3">
-        {LangList.map((lang) => (
-          <Link className="flex items-center " href={"myErrors/" + lang.param}>
-            <ListItem className=" flex justify-center  items-center  gap-2">
+      <List className='grid grid-cols-2 md:grid-cols-3'>
+        {LangList.map((lang, index) => (
+          <Link
+            key={index}
+            className='flex items-center '
+            href={"myErrors/" + lang.param}
+          >
+            <ListItem className=' flex justify-center  items-center  gap-2'>
               <Image
                 src={lang.image}
                 width={32}
@@ -50,7 +54,7 @@ function Languages() {
         ))}
       </List>
     </div>
-  );
+  )
 }
 
 export default Languages;
