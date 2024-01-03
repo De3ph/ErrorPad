@@ -1,10 +1,22 @@
 import React from "react";
+import {
+  SupabaseClient,
+  createServerComponentClient,
+} from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 import { Button } from "@/ui/index";
 import Link from "next/link";
 import Image from "next/image";
-import pylogo from "@/images/python.png"
+import pylogo from "@/images/python.png";
 
-function adminDashboard() {
+async function adminDashboard() {
+  const supabase = createServerComponentClient({ cookies });
+
+  const session = await supabase.auth.getSession();
+
+  if (session.data.session === null) {
+    return <div>Unauthorized</div>;
+  }
   return (
     <div className="container grid grid-cols-2 items-center justify-items-center gap-8">
       <div>
