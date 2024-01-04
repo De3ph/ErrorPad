@@ -13,6 +13,10 @@ import {
   ListItemSuffix,
   Chip,
   Spinner,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
 } from "@material-tailwind/react";
 
 export {
@@ -28,4 +32,8 @@ export {
   ListItemSuffix,
   Chip,
   Spinner,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
 };

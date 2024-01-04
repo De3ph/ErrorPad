@@ -18,7 +18,7 @@ import {
   IconBug,
 } from "@tabler/icons-react";
 
-export default function Sidebar() {
+export default function Sidebar({ user }) {
   const iconSize = "h-5 w-5";
   return (
     <Card className="w-full h-full p-4 rounded-none shadow-md bg-opacity-20">
@@ -31,15 +31,18 @@ export default function Sidebar() {
             My Errors
           </ListItem>
         </Link>
-        <Link href="/adminDashboard">
-          <ListItem>
-            <ListItemPrefix>
-              <IconReportAnalytics className={iconSize} />
-            </ListItemPrefix>
-            Admin Dashboard
-          </ListItem>
-        </Link>
-
+        {user.role == "ADMIN" ? (
+          <Link href="/adminDashboard">
+            <ListItem>
+              <ListItemPrefix>
+                <IconReportAnalytics className={iconSize} />
+              </ListItemPrefix>
+              Admin Dashboard
+            </ListItem>
+          </Link>
+        ) : (
+          <></>
+        )}
         <ListItem>
           <ListItemPrefix>
             <IconInbox className={iconSize} />
