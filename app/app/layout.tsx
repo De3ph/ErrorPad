@@ -31,12 +31,12 @@ export default async function RootLayout({
           <Header user={userData} />
         </header>
 
-        <main className='flex place-self-stretch min-h-screen'>
-          <nav className='h-full max-w-screen-sm'>
+        <main className='flex flex-col md:flex-row place-self-stretch min-h-screen'>
+          <nav className='w-full md:w-auto md:h-full max-w-screen-sm py-2'>
             {userData ? <Sidebar user={userData} /> : <></>}
           </nav>
 
-          <section className='py-16 px-8 w-full'>{children}</section>
+          <section className='py-12 px-8 w-full'>{children}</section>
         </main>
 
         <footer className='w-full grid items-stretch'>

@@ -53,14 +53,15 @@ async function myErrors() {
   });
 
   return (
-    <Card className=" flex flex-col items-center gap-4 ">
-      <h2 className=" text-4xl">My All Errors</h2>
-      <div className="flex flex-col md:flex-row">
+    // <Card className=' flex flex-col items-center gap-8 pt-8 pb-4 '>
+    <div>
+      <h2 className=' text-4xl'>My All Errors</h2>
+      <div className='flex flex-col lg:flex-row max-w-screen-2xl'>
         <BarChartComponent dataList={errorCount} />
         <Languages />
       </div>
-    </Card>
-  );
+    </div>
+  )
 }
 
 export default myErrors;
