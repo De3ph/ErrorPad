@@ -17,7 +17,9 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
-} from "@material-tailwind/react";
+  IconButton,
+  Drawer
+} from "@material-tailwind/react"
 
 export {
   ThemeProvider,
@@ -36,4 +38,6 @@ export {
   DialogHeader,
   DialogBody,
   DialogFooter,
-};
+  IconButton,
+  Drawer
+}
