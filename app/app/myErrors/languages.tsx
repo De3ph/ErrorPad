@@ -12,14 +12,14 @@ const LangList = [
   {
     lang: "python",
     image: pythonLogo,
-    param: "python",
+    param: "python"
   },
   {
     lang: "typescript",
     image: tsLogo,
-    param: "typescript",
-  },
-];
+    param: "ts"
+  }
+]
 
 function Languages() {
   return (

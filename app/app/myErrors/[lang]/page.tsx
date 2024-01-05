@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic"
 import pythonLogo from "@/images/python.png"
 import csharpLogo from "@/images/csharp.png"
 import javaLogo from "@/images/java.png"
-import jsLogo from "@/images/js.png"
+import tsLogo from "@/images/ts.png"
 import Image from "next/image"
 import { Typography } from "@/ui/index"
 
@@ -36,9 +36,9 @@ const LangList = [
     param: "java"
   },
   {
-    lang: "JavaScript",
-    image: jsLogo,
-    param: "js"
+    lang: "typescript",
+    image: tsLogo,
+    param: "ts"
   }
 ]
 
