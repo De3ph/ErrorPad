@@ -5,6 +5,8 @@ import {
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import Messages from "@/app/login/messages";
+import fetchUserData from "@/app/methods/fetchuserdata";
 
 async function page() {
   const supabase = createServerComponentClient({ cookies });
@@ -15,10 +17,14 @@ async function page() {
     return <div>Unauthorized</div>;
   }
 
-  var companyMail = session.data.session.user.email?.split("@")[1];
+  const user = await fetchUserData(session.data.session.user.id);
+
+  var companyMail = user.email?.split("@")[1];
+  var company = user.company;
   return (
-    <div className="flex w-full px-8 justify-center gap-2">
-      <CreateEmployeeForm mail={companyMail} />
+    <div className="flex w-full px-8 justify-center gap-2 flex-col items-center">
+      <CreateEmployeeForm mail={companyMail} company={company} />
+      <Messages />
     </div>
   );
 }

@@ -4,9 +4,11 @@ export type ErrorData = {
 };
 
 export type Data = {
+  date: Date;
+  source: string;
   lang: string;
   code: string;
   message: string;
   line: number;
-  //rawData?: Diagnostic
+  user_email: string;
 };

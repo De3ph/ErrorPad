@@ -1,16 +1,19 @@
 "use client";
-import { Card, Typography } from "@/ui/index";
+import { Card, Typography, Button } from "@/ui/index";
 import { Employee } from "../types/Employee";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const headerList = [
   "Picture",
   "Name",
+  "Last Name",
   "Job",
-  "Review",
+  "Python Review",
+  "TypeScript Review",
   "Email",
-  "Employed",
-  "ID",
+  "Role",
+  "Details",
 ];
 
 export default function EmployeeTable({ dataList = [{}] }) {
@@ -24,7 +27,7 @@ export default function EmployeeTable({ dataList = [{}] }) {
   }, []);
   console.log(employeeList);
   return (
-    <Card className="max-h-[46rem] w-full overflow-scroll">
+    <Card className="max-h-[46rem] w-[75vw] overflow-scroll">
       <table className="w-full min-w-max table-auto text-left overflow-scroll">
         <thead>
           <tr>
@@ -75,7 +78,16 @@ export default function EmployeeTable({ dataList = [{}] }) {
                     color="blue-gray"
                     className="font-normal"
                   >
-                    {employee.name}
+                    {employee.first_name}
+                  </Typography>
+                </td>
+                <td className={classes}>
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {employee.last_name}
                   </Typography>
                 </td>
                 <td className={classes}>
@@ -93,7 +105,16 @@ export default function EmployeeTable({ dataList = [{}] }) {
                     color="blue-gray"
                     className="font-normal"
                   >
-                    {employee.review}
+                    {employee.python_review}
+                  </Typography>
+                </td>
+                <td className={classes}>
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {employee.typescript_review}
                   </Typography>
                 </td>
                 <td className={classes}>
@@ -111,7 +132,7 @@ export default function EmployeeTable({ dataList = [{}] }) {
                     color="blue-gray"
                     className="font-normal"
                   >
-                    {employee.employedDate}
+                    {employee.role}
                   </Typography>
                 </td>
                 <td className={classes}>
@@ -120,7 +141,9 @@ export default function EmployeeTable({ dataList = [{}] }) {
                     color="blue-gray"
                     className="font-normal"
                   >
-                    {employee.id}
+                    <Link href={"" + employee?.id}>
+                      <Button size="sm">Details</Button>
+                    </Link>
                   </Typography>
                 </td>
               </tr>

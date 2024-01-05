@@ -5,7 +5,7 @@ import Link from "next/link";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { Checkbox } from "@material-tailwind/react";
 
-function CreateEmployeeForm({ mail = "" }) {
+function CreateEmployeeForm({ mail = "", company = "" }) {
   const [mailError, setMailError] = useState(false);
   const [open, setOpen] = useState(false);
   const [checkBoxConfirm, setCheckBoxConfirm] = useState(false);
@@ -142,6 +142,63 @@ function CreateEmployeeForm({ mail = "" }) {
         ) : (
           <></>
         )}
+        <div className="flex gap-2 my-2">
+          <div>
+            <label className="text-md mt-6" htmlFor="first_name">
+              First Name
+            </label>
+            <input
+              className="rounded-md px-4 py-2 bg-inherit border w-full"
+              type="text"
+              name="first_name"
+            />
+          </div>
+          <div>
+            <label className="text-md mt-6" htmlFor="last_name">
+              Last Name
+            </label>
+            <input
+              className="rounded-md px-4 py-2 bg-inherit border w-full"
+              type="text"
+              name="last_name"
+            />
+          </div>
+        </div>
+        <label className="text-md" htmlFor="company">
+          Company
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border w-full"
+          type="text"
+          name="company"
+          value={company}
+          readOnly={true}
+        />
+        <div className="flex gap-2 my-2">
+          <div>
+            <label className="text-md mt-6" htmlFor="job">
+              Job
+            </label>
+            <input
+              className="rounded-md px-4 py-2 bg-inherit border w-full"
+              type="text"
+              name="job"
+            />
+          </div>
+          <div>
+            <label className="text-md mt-6" htmlFor="role">
+              Role
+            </label>
+            <select
+              className="rounded-md px-4 py-2 bg-inherit border w-full"
+              name="role"
+            >
+              <option value="ADMIN">Admin</option>
+              <option value="EMPLOYEE">Employee</option>
+            </select>
+          </div>
+        </div>
+
         <Checkbox
           label="Çalışan oluşturma onay formu"
           defaultChecked={checkBoxConfirm}
@@ -187,10 +244,10 @@ function CreateEmployeeForm({ mail = "" }) {
             disabled={
               mailError || !passwordValidate.validated || !checkBoxConfirm
             }
-            formAction="/auth/sign-up"
+            formAction="/auth/sign-up-company"
             type="submit"
           >
-            Contiune
+            Create
           </Button>
         </>
       </div>
