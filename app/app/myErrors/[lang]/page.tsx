@@ -25,11 +25,16 @@ const getLangImage = (currentLangName: string) => {
   return AvailableLangList.find((lang) => currentLangName == lang.name)?.image
 }
 
-async function fetchData(supabase: SupabaseClient, lang: string) {
+async function fetchData(
+  supabase: SupabaseClient,
+  email: string,
+  lang: string
+) {
   try {
     let { data: errors, error } = await supabase
       .from("errors")
       .select("*")
+      .eq("user_email", email)
       .eq("lang", lang.toLowerCase())
     return errors
   } catch (error) {
@@ -43,8 +48,13 @@ async function MyErrorsInLang({
   params: { lang: string }
 }) {
   const supabase = createServerComponentClient({ cookies })
+  const user = (await supabase.auth.getUser()).data.user
 
-  const errors = await fetchData(supabase, currentLangName)
+  const errors = await fetchData(
+    supabase,
+    user?.email as string,
+    currentLangName
+  )
 
   let lang: any = AvailableLangList.find((lang) => currentLangName == lang.name)
 
