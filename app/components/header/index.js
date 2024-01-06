@@ -1,7 +1,6 @@
 import { LogoutButton, LoginButton } from "@/components/auth";
 import Image from "next/image";
-import logoPng from "@/images/logo2.png";
-import fetchUserData from "@/app/methods/fetchuserdata";
+import logoPng from "@/images/logo2.png"
 
 async function Header({ user }) {
   return (
