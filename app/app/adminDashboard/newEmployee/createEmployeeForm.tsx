@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from "@/ui";
-import Link from "next/link";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { Checkbox } from "@material-tailwind/react";
 
@@ -14,10 +13,6 @@ function CreateEmployeeForm({ mail = "", company = "" }) {
     strength: "",
     show: false,
     validated: false,
-  });
-  const [formData, setFormData] = useState({
-    mail: mail,
-    password: "",
   });
   var isContinue: boolean = false;
   const handleOpen = () => setOpen(!open);
@@ -64,7 +59,6 @@ function CreateEmployeeForm({ mail = "", company = "" }) {
         show: true,
         validated: false,
       });
-    formData.password = event.target.value;
   }
 
   function handleCheckboxChange(event: any) {

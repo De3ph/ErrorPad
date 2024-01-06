@@ -1,10 +1,13 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/ui";
+import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from "@/ui";
+import { Checkbox } from "@material-tailwind/react";
 import Link from "next/link";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 function SignupForm() {
+  const [open, setOpen] = useState(false);
+  const [checkBoxConfirm, setCheckBoxConfirm] = useState(false);
   const [mailError, setMailError] = useState(false);
   const [passwordShow, setPasswordShow] = useState(false);
   const [passwordValidate, setPasswordValidate] = useState({
@@ -12,11 +15,7 @@ function SignupForm() {
     show: false,
     validated: false,
   });
-  const [formData, setFormData] = useState({
-    mail: "",
-    password: "",
-  });
-
+  const handleOpen = () => setOpen(!open);
   function handlePasswordChange(event: any) {
     var passwordValue = event.target.value;
     const strengthChecks = {
@@ -51,9 +50,10 @@ function SignupForm() {
         show: true,
         validated: false,
       });
-    formData.password = event.target.value;
   }
-
+  function handleCheckboxChange(event: any) {
+    setCheckBoxConfirm(true);
+  }
   function checkMail(event: any) {
     var email: string = event.target.value;
     console.log(email);
@@ -135,6 +135,84 @@ function SignupForm() {
         ) : (
           <></>
         )}
+        <div className="flex gap-2 my-2">
+          <div>
+            <label className="text-md mt-6" htmlFor="first_name">
+              First Name
+            </label>
+            <input
+              className="rounded-md px-4 py-2 bg-inherit border w-full"
+              type="text"
+              name="first_name"
+            />
+          </div>
+          <div>
+            <label className="text-md mt-6" htmlFor="last_name">
+              Last Name
+            </label>
+            <input
+              className="rounded-md px-4 py-2 bg-inherit border w-full"
+              type="text"
+              name="last_name"
+            />
+          </div>
+        </div>
+        <label className="text-md mt-6" htmlFor="job">
+          Job
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border w-full"
+          type="text"
+          name="job"
+        />
+        <Checkbox
+          label="Çalışan oluşturma onay formu"
+          defaultChecked={checkBoxConfirm}
+          onClick={() => {
+            if (checkBoxConfirm) setCheckBoxConfirm(false);
+            else handleOpen();
+          }}
+        />
+        <Dialog open={open} handler={handleOpen}>
+          <DialogHeader>
+            KİŞİSEL VERİLERİNİN İŞLENMESİNE DAİR AYDINLATMA METNİ
+          </DialogHeader>
+          <DialogBody>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+            molestiae vero vel porro nisi, eos ex et soluta dicta illo aut ipsa
+            itaque modi, est veniam necessitatibus tenetur cum magnam pariatur
+            fugit impedit repudiandae. Consequatur possimus magni harum
+            exercitationem sint impedit, corrupti, consectetur non libero eum ea
+            corporis iusto incidunt reiciendis sit nam animi debitis quia? Ut
+            eaque, maxime, ipsa quae commodi ab tenetur optio reprehenderit
+            laborum iste fugit temporibus deleniti? Ratione ipsa cupiditate
+            commodi fugit quasi alias dolores obcaecati, corrupti ullam illum
+            molestias aliquam eius suscipit veniam molestiae in adipisci
+            praesentium at tempore provident. Veritatis corrupti atque aliquam
+            eaque.
+          </DialogBody>
+          <DialogFooter className="flex">
+            <Button
+              variant="text"
+              color="red"
+              onClick={handleOpen}
+              className="mr-1"
+            >
+              <span>Cancel</span>
+            </Button>
+            <Button
+              variant="gradient"
+              color="green"
+              disabled={mailError || !passwordValidate.validated}
+              onClick={(event) => {
+                handleOpen();
+                handleCheckboxChange(event);
+              }}
+            >
+              Continue
+            </Button>
+          </DialogFooter>
+        </Dialog>
       </div>
 
       <div className="w-3/4 mx-auto flex flex-col items-center gap-2 justify-center mt-3">

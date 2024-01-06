@@ -15,7 +15,6 @@ export async function POST(request: Request) {
     first_name: String(formData.get("first_name")),
     last_name: String(formData.get("last_name")),
     company: String(formData.get("company")),
-    phone: String(formData.get("phone")),
     job: String(formData.get("job")),
     role: String(formData.get("role")),
   };
@@ -39,7 +38,6 @@ export async function POST(request: Request) {
         first_name: userdata.first_name,
         last_name: userdata.last_name,
         company: userdata.company,
-        phone: userdata.phone,
         job: userdata.job,
         role: userdata.role,
       },
