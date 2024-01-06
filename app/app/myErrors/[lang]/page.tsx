@@ -13,38 +13,16 @@ import javaLogo from "@/images/java.png"
 import tsLogo from "@/images/ts.png"
 import Image from "next/image"
 import { Typography } from "@/ui/index"
+import { ILangObj } from "@/app/types/Lang"
+import AvailableLangList from "@/app/util/AvailableLangList"
 
 type ChartData = {
   errorName: string
   count: number
 }
 
-const LangList = [
-  {
-    lang: "Python",
-    image: pythonLogo,
-    param: "python"
-  },
-  {
-    lang: "C#",
-    image: csharpLogo,
-    param: "csharp"
-  },
-  {
-    lang: "Java",
-    image: javaLogo,
-    param: "java"
-  },
-  {
-    lang: "typescript",
-    image: tsLogo,
-    param: "ts"
-  }
-]
-
-const getLangImage = (lang: string) => {
-  return LangList.find((_) => _.param.toLowerCase() == lang.toLowerCase())
-    ?.image
+const getLangImage = (currentLangName: string) => {
+  return AvailableLangList.find((lang) => currentLangName == lang.name)?.image
 }
 
 async function fetchData(supabase: SupabaseClient, lang: string) {
@@ -52,25 +30,29 @@ async function fetchData(supabase: SupabaseClient, lang: string) {
     let { data: errors, error } = await supabase
       .from("errors")
       .select("*")
-      .eq("lang", lang)
+      .eq("lang", lang.toLowerCase())
     return errors
   } catch (error) {
     console.log(error)
   }
 }
 
-async function MyErrorsInLang({ params }: any) {
+async function MyErrorsInLang({
+  params: { lang: currentLangName }
+}: {
+  params: { lang: string }
+}) {
   const supabase = createServerComponentClient({ cookies })
 
-  const errors = await fetchData(supabase, params.lang)
+  const errors = await fetchData(supabase, currentLangName)
 
-  let lang: any = LangList.find((lang) => params.lang == lang.param)
+  let lang: any = AvailableLangList.find((lang) => currentLangName == lang.name)
 
-  const image = getLangImage(params.lang)
+  const image = getLangImage(currentLangName)
   let errorCount: ChartData[] = []
 
   errors?.forEach((_: any) => {
-    if (_.lang == params.lang.toLowerCase()) {
+    if (_.lang == currentLangName.toLowerCase()) {
       var index = errorCount.findIndex(({ errorName }) => errorName == _.code)
       index == -1
         ? errorCount.push({ errorName: _.code, count: 1 })
@@ -79,11 +61,20 @@ async function MyErrorsInLang({ params }: any) {
   })
 
   return (
-    <div className='container flex flex-col'>
-      <header className='flex items-center gap-2'>
-        <Image src={image} width={64} height={64} alt='lang logo' />
-        <h2 className='text-4xl'>My {lang?.lang} Errors </h2>
+    <div className='container flex flex-col space-y-8'>
+      <header className='flex items-center justify-center gap-2'>
+        <h2 className='text-4xl'>
+          <Image
+            className='inline-block'
+            src={image}
+            width={64}
+            height={64}
+            alt='lang logo'
+          />{" "}
+          Errors{" "}
+        </h2>
       </header>
+
       <section>
         <table className='w-full min-w-max table-auto text-left overflow-scroll'>
           <thead>

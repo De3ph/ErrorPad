@@ -29,28 +29,26 @@ async function fetchData(supabase: SupabaseClient, userEmail?: string) {
   }
 }
 
-async function myErrors() {
-  const supabase = createServerComponentClient({ cookies });
+async function MyErrors() {
+  const supabase = createServerComponentClient({ cookies })
 
-  const session = await supabase.auth.getSession();
+  const session = await supabase.auth.getSession()
 
   if (session.data.session === null) {
-    return <div>Unauthorized</div>;
+    return <div>Unauthorized</div>
   }
 
-  const errors = await fetchData(supabase, session.data.session.user.email);
+  const errors = await fetchData(supabase, session.data.session.user.email)
 
-  let errorCount: ChartData[] = [];
-  console.log(errors);
+  let errorCount: ChartData[] = []
   errors?.forEach((error: Data) => {
-    console.log(error);
-    var langNameSliced: string = error?.lang.slice(1);
-    var langName: string = error?.lang.charAt(0).toUpperCase() + langNameSliced;
-    var index = errorCount.findIndex(({ name }) => name == langName);
+    var langNameSliced: string = error?.lang.slice(1)
+    var langName: string = error?.lang.charAt(0).toUpperCase() + langNameSliced
+    var index = errorCount.findIndex(({ name }) => name == langName)
     index == -1
       ? errorCount.push({ name: langName, count: 1 })
-      : errorCount[index].count++;
-  });
+      : errorCount[index].count++
+  })
 
   return (
     // <Card className=' flex flex-col items-center gap-8 pt-8 pb-4 '>
@@ -64,4 +62,4 @@ async function myErrors() {
   )
 }
 
-export default myErrors;
+export default MyErrors
