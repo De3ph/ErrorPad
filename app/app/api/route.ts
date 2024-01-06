@@ -30,37 +30,30 @@ export async function POST(req: NextRequest) {
     password
   })
 
-  if (isLoggedIn.user) {
-    let updatedData = body?.data.slice().map((item) => {
-      let updatedItem = Object()
-      Object.assign(updatedItem, item)
-      updatedItem["user_email"] = email
-      return updatedItem
+  if (!isLoggedIn.user) {
+    return NextResponse.json({
+      message: "User not found!"
     })
-
-    const { data, error } = await supabase
-      .from("errors")
-      .insert(updatedData)
-      .select()
-
-    if (error) {
-      console.log("🚀 ~ file: route.ts:48 ~ POST ~ error:", error)
-    }
   }
 
-  // const { data, error } = await supabase
-  //   .from("errors")
-  //   .insert(body?.data)
-  //   .select()
+  let updatedData = body?.data.slice().map((item) => {
+    let updatedItem = Object()
+    Object.assign(updatedItem, item)
+    updatedItem["user_email"] = email
+    return updatedItem
+  })
 
-  // if (error) {
-  //   console.log("🚀 ~ file: route.ts:23 ~ POST ~ error:", error)
-  //   return NextResponse.json({
-  //     message: "failed"
-  //   })
-  // }
+  const { data, error } = await supabase
+    .from("errors")
+    .insert(updatedData)
+    .select()
 
-  console.log("ok")
+  if (error) {
+    console.log("🚀 ~ file: route.ts:48 ~ POST ~ error:", error)
+    return NextResponse.json({
+      message: "Failed when adding data"
+    })
+  }
 
   return NextResponse.json({
     message: "ok"

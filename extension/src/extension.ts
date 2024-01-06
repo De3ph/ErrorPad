@@ -24,8 +24,8 @@ export async function activate(context: vscode.ExtensionContext) {
       await updatePassword(context)
     }
   )
-  vscode.commands.registerCommand(CONSTANTS.commands.pushDatas, async () => {
-    await sendDataToServer(sessionStore)
+  vscode.commands.registerCommand(CONSTANTS.commands.pushDatas, () => {
+    sendDataToServer(sessionStore)
   })
 
   await checkCredentialsOnStartup(context)
