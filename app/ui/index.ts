@@ -18,8 +18,11 @@ import {
   DialogBody,
   DialogFooter,
   IconButton,
-  Drawer
-} from "@material-tailwind/react"
+  Drawer,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+} from "@material-tailwind/react";
 
 export {
   ThemeProvider,
@@ -39,5 +42,8 @@ export {
   DialogBody,
   DialogFooter,
   IconButton,
-  Drawer
-}
+  Drawer,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+};

@@ -13,7 +13,7 @@ import { Data } from "../types/Error";
 import Languages from "./languages";
 
 type ChartData = {
-  name: string;
+  errorName: string;
   count: number;
 };
 
@@ -30,36 +30,36 @@ async function fetchData(supabase: SupabaseClient, userEmail?: string) {
 }
 
 async function MyErrors() {
-  const supabase = createServerComponentClient({ cookies })
+  const supabase = createServerComponentClient({ cookies });
 
-  const session = await supabase.auth.getSession()
+  const session = await supabase.auth.getSession();
 
   if (session.data.session === null) {
-    return <div>Unauthorized</div>
+    return <div>Unauthorized</div>;
   }
 
-  const errors = await fetchData(supabase, session.data.session.user.email)
+  const errors = await fetchData(supabase, session.data.session.user.email);
 
-  let errorCount: ChartData[] = []
+  let errorCount: ChartData[] = [];
   errors?.forEach((error: Data) => {
-    var langNameSliced: string = error?.lang.slice(1)
-    var langName: string = error?.lang.charAt(0).toUpperCase() + langNameSliced
-    var index = errorCount.findIndex(({ name }) => name == langName)
+    var langNameSliced: string = error?.lang.slice(1);
+    var langName: string = error?.lang.charAt(0).toUpperCase() + langNameSliced;
+    var index = errorCount.findIndex(({ errorName }) => errorName == langName);
     index == -1
-      ? errorCount.push({ name: langName, count: 1 })
-      : errorCount[index].count++
-  })
+      ? errorCount.push({ errorName: langName, count: 1 })
+      : errorCount[index].count++;
+  });
 
   return (
     // <Card className=' flex flex-col items-center gap-8 pt-8 pb-4 '>
     <div>
-      <h2 className=' text-4xl'>My All Errors</h2>
-      <div className='flex flex-col lg:flex-row max-w-screen-2xl'>
+      <h2 className=" text-4xl">My All Errors</h2>
+      <div className="flex flex-col lg:flex-row max-w-screen-2xl">
         <BarChartComponent dataList={errorCount} />
         <Languages />
       </div>
     </div>
-  )
+  );
 }
 
-export default MyErrors
+export default MyErrors;

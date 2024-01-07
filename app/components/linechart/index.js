@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   LineChart,
   Line,
@@ -11,17 +12,21 @@ import {
 } from "recharts";
 
 const getMaxValue = (array) => {
-  return Math.max(...array.map((error) => error.count));
+  return Math.max(
+    ...array.map((error) => {
+      return error.count;
+    })
+  );
 };
 
-function LineChart() {
+function LineChartComponent({ dataList = [{}] }) {
   const [maxValue, setMaxValue] = React.useState(0);
   React.useEffect(() => {
     if (dataList[0]) {
-      console.log(dataList);
       setMaxValue(getMaxValue(dataList));
     }
-  }, []);
+  }, [dataList]);
+
   return (
     <div className="w-full h-[60vw] flex justify-center items-center md:max-h-[60vh]">
       <ResponsiveContainer width="95%" height="90%">
@@ -35,24 +40,23 @@ function LineChart() {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis type="number" domain={[0, 10]} />
+          <XAxis dataKey="month" />
+          <YAxis
+            type="number"
+            domain={[0, Math.round(maxValue + maxValue / 2)]}
+          />
           <Tooltip />
           <Legend />
           <Line
             type="monotone"
-            dataKey="pv"
+            dataKey="count"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
-          >
-            {dataList.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-            ))}
-          </Line>
+          ></Line>
         </LineChart>
       </ResponsiveContainer>
     </div>
   );
 }
 
-export default LineChart;
+export default LineChartComponent;

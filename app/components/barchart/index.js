@@ -31,26 +31,26 @@ export default function BarChartComponent({ dataList = [{}] }) {
     }
   }, []);
   return (
-    <div className='w-full h-[60vw] flex justify-center items-center md:max-h-[60vh]'>
-      <ResponsiveContainer width='95%' height='90%'>
+    <div className="w-full h-[60vw] flex justify-center items-center md:max-h-[60vh]">
+      <ResponsiveContainer width="95%" height="90%">
         <BarChart
           data={dataList}
           margin={{
             top: 5,
             right: 30,
             left: -30,
-            bottom: 5
+            bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='name' />
-          <YAxis type='number' domain={[0, 10]} />
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="errorName" />
+          <YAxis type="number" domain={[0, 10]} />
           <Tooltip />
           <Legend />
           <Bar
-            dataKey='count'
-            fill='#8884d8'
-            activeBar={<Rectangle fill='pink' stroke='blue' />}
+            dataKey="count"
+            fill="#8884d8"
+            activeBar={<Rectangle fill="pink" stroke="blue" />}
             label={{ position: "top" }}
           >
             {dataList.map((entry, index) => (
@@ -60,5 +60,5 @@ export default function BarChartComponent({ dataList = [{}] }) {
         </BarChart>
       </ResponsiveContainer>
     </div>
-  )
+  );
 }
