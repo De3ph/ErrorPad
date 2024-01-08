@@ -24,6 +24,7 @@ async function fetchData(supabase: SupabaseClient, userEmail?: string) {
       .from("errors")
       .select("*")
       .eq("user_email", userEmail);
+
     return errors;
   } catch (error) {
     console.log(error);
@@ -32,17 +33,16 @@ async function fetchData(supabase: SupabaseClient, userEmail?: string) {
 
 async function userErrors({ params }: any) {
   const supabase = createServerComponentClient({ cookies });
-
   const session = await supabase.auth.getSession();
 
   if (session.data.session === null) {
     return <div>Unauthorized</div>;
   }
+  console.log(params);
   const user = await fetchUserData(params.user_id);
   const errors = await fetchData(supabase, user.email);
 
   let errorCount: ChartData[] = [];
-  console.log(errors);
   errors?.forEach((error: Data) => {
     var langNameSliced: string = error?.lang.slice(1);
     var langName: string = error?.lang.charAt(0).toUpperCase() + langNameSliced;
@@ -51,13 +51,12 @@ async function userErrors({ params }: any) {
       ? errorCount.push({ name: langName, count: 1 })
       : errorCount[index].count++;
   });
-  console.log(errorCount);
   return (
     <Card className=" flex flex-col items-center gap-4 ">
       <h2 className=" text-4xl">{user?.first_name}'s All Errors</h2>
       <div className="flex flex-col md:flex-row">
         <BarChartComponent dataList={errorCount} />
-        <Languages />
+        <Languages urlLink={params.user_id} />
       </div>
     </Card>
   );

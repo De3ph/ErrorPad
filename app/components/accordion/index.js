@@ -18,6 +18,7 @@ export function DefaultAccordion({ errorsList }) {
   }
 
   function groupByErrorTypeAndYear(errorType, selectedYear) {
+    console.log(selectedYear);
     const groupedData = {};
     const data = errorsList;
     data.forEach((item) => {
@@ -79,16 +80,21 @@ export function DefaultAccordion({ errorsList }) {
 
   return (
     <div>
+      <h3 className="flex justify-center text-2xl text-blue-gray-800 underline font-bold">
+        Yearly review by Error Types
+      </h3>
       {errorTypes.map((type, index) => (
         <Accordion open={open === index} key={index}>
           <AccordionHeader
             onClick={() => {
               handleOpen(index);
+              setSelectedYear(new Date().getFullYear());
               setGroupedChartData(groupByErrorTypeAndYear(type, selectedYear));
-              console.log(selectedYear);
             }}
+            className="flex justify-start items-center gap-4"
           >
             {type}
+            <p className=" text-gray-600 font-light text-sm">↓</p>
           </AccordionHeader>
           <AccordionBody>
             <div className="w-full flex flex-col items-center">
@@ -99,11 +105,12 @@ export function DefaultAccordion({ errorsList }) {
                   setGroupedChartData(
                     groupByErrorTypeAndYear(type, parseInt(event.target.value))
                   );
-                  console.log(groupedChartData);
                 }}
               >
-                {years.map((item) => (
-                  <option value={item}>{item}</option>
+                {years.map((item, index) => (
+                  <option value={item} key={index}>
+                    {item}
+                  </option>
                 ))}
               </select>
               <LineChartComponent dataList={groupedChartData} />

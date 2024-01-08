@@ -30,6 +30,8 @@ async function EmployeeList() {
   const employeeLists: Employee[] =
     (await fetchData(supabase, user?.company)) || [];
 
+  console.log(employeeLists);
+
   return (
     <div className="w-full p-8">
       <header className="w-full text-2xl flex items-center mb-4 text-gray-900">

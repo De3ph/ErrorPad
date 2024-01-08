@@ -16,16 +16,7 @@ const headerList = [
   "Details",
 ];
 
-export default function EmployeeTable({ dataList = [{}] }) {
-  const [employeeList, setEmployeeList] = useState<Employee[]>([]);
-
-  useEffect(() => {
-    console.log(dataList);
-    dataList.map((employee: any) => {
-      setEmployeeList((employeeList) => [...employeeList, employee]);
-    });
-  }, []);
-  console.log(employeeList);
+export default function EmployeeTable({ dataList = [{}] }: any) {
   return (
     <Card className="max-h-[46rem] w-[75vw] overflow-scroll">
       <table className="w-full min-w-max table-auto text-left overflow-scroll">
@@ -48,8 +39,8 @@ export default function EmployeeTable({ dataList = [{}] }) {
           </tr>
         </thead>
         <tbody>
-          {employeeList.map((employee: Employee, index: number) => {
-            const isLast = index === employeeList.length - 1;
+          {dataList.map((employee: Employee, index: number) => {
+            const isLast = index === dataList.length - 1;
             const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 
             return (
@@ -105,7 +96,7 @@ export default function EmployeeTable({ dataList = [{}] }) {
                     color="blue-gray"
                     className="font-normal"
                   >
-                    {employee.python_review}
+                    {employee?.python_review || "-"}
                   </Typography>
                 </td>
                 <td className={classes}>
@@ -114,7 +105,7 @@ export default function EmployeeTable({ dataList = [{}] }) {
                     color="blue-gray"
                     className="font-normal"
                   >
-                    {employee.typescript_review}
+                    {employee?.typescript_review || "-"}
                   </Typography>
                 </td>
                 <td className={classes}>
