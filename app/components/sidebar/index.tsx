@@ -48,21 +48,7 @@ const Links = ({ user }: { user: any }) => {
       ) : (
         <></>
       )}
-      <ListItem>
-        <ListItemPrefix>
-          <IconInbox className={iconSize} />
-        </ListItemPrefix>
-        Inbox
-        <ListItemSuffix>
-          <Chip
-            value="14"
-            size="sm"
-            variant="ghost"
-            color="blue-gray"
-            className="rounded-full"
-          />
-        </ListItemSuffix>
-      </ListItem>
+
       <Link href="/profile">
         <ListItem>
           <ListItemPrefix>
