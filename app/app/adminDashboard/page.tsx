@@ -20,26 +20,33 @@ async function adminDashboard() {
   }
 
   return (
-    <div className="container grid grid-cols-2 items-center justify-items-center gap-8">
+    /*  <div className="container grid grid-cols-2 items-center justify-items-center gap-8">
       <div>
+       
+      </div>
+      <div>
+        
+      </div>
+    </div> */
+    <div>
+      <h2 className="text-2xl font-semibold mb-4 text-center">
+        Admin Dashboard
+      </h2>
+      <div className="flex justify-around items-center h-full">
         <Link href="/adminDashboard/employeeList">
-          <Button
-            ripple={true}
-            variant="outlined"
-            className="text-4xl flex gap-4 justify-center items-center text-gray-800"
-          >
+          <Button className="text-xl max-w-[12vw]" color="blue">
             <h3>Employee List</h3>
           </Button>
         </Link>
-      </div>
-      <div>
+
         <Link href="/adminDashboard/newEmployee">
-          <Button
-            ripple={true}
-            variant="outlined"
-            className="text-4xl flex gap-4 justify-center items-center text-gray-800"
-          >
+          <Button className="text-xl max-w-[12vw]" color="green">
             Create New Employee
+          </Button>
+        </Link>
+        <Link href="/adminDashboard/entryReview">
+          <Button className="text-xl max-w-[12vw]" color="purple">
+            Entry Review
           </Button>
         </Link>
       </div>

@@ -13,9 +13,6 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
-import Link from "next/link";
-import { List, ListItem } from "@/ui/index";
-import { IconBug } from "@tabler/icons-react";
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
 const getMaxValue = (array) => {
@@ -44,7 +41,10 @@ export default function BarChartComponent({ dataList = [{}] }) {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="errorName" />
-          <YAxis type="number" domain={[0, 10]} />
+          <YAxis
+            type="number"
+            domain={[0, Math.round(maxValue + maxValue / 2)]}
+          />
           <Tooltip />
           <Legend />
           <Bar
