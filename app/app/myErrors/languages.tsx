@@ -2,26 +2,22 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { List, ListItem } from "@/ui/index";
-import pythonLogo from "@/images/python.png";
-import csharpLogo from "@/images/csharp.png";
-import javaLogo from "@/images/java.png";
-import tsLogo from "@/images/ts.png";
+import { List, ListItem } from "@/ui/index"
 
-import availableLangList from "@/app/util/AvailableLangList";
+import availableLangList from "@/app/util/AvailableLangList"
+import { usePathname } from "next/navigation"
 
-// grid grid-cols-2 md:grid-cols-3
-// grid grid-flow-row md:grid-flow-col
 function Languages({ urlLink }: any) {
+  const currentPath = usePathname()
   return (
-    <List className="grid grid-cols-2 gap-x-8 justify-items-center">
+    <List className='grid grid-cols-2 gap-x-8 justify-items-center'>
       {availableLangList.map((lang, index) => (
         <Link
           key={index}
-          className="flex items-center "
-          href={urlLink + "/" + lang.name}
+          className='flex items-center '
+          href={`${currentPath}/${lang.name}`}
         >
-          <ListItem className="flex justify-center items-center gap-2">
+          <ListItem className='flex justify-center items-center gap-2'>
             <Image
               src={lang.image}
               width={28}
@@ -33,7 +29,7 @@ function Languages({ urlLink }: any) {
         </Link>
       ))}
     </List>
-  );
+  )
 }
 
 export default Languages;

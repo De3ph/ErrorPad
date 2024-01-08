@@ -22,7 +22,9 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-} from "@material-tailwind/react";
+  Select,
+  Option
+} from "@material-tailwind/react"
 
 export {
   ThemeProvider,
@@ -46,4 +48,6 @@ export {
   Accordion,
   AccordionHeader,
   AccordionBody,
-};
+  Select,
+  Option
+}
