@@ -23,7 +23,8 @@ import {
   AccordionHeader,
   AccordionBody,
   Select,
-  Option
+  Option,
+  Alert
 } from "@material-tailwind/react"
 
 export {
@@ -49,5 +50,6 @@ export {
   AccordionHeader,
   AccordionBody,
   Select,
-  Option
+  Option,
+  Alert
 }

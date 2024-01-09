@@ -6,8 +6,7 @@ import { cookies } from "next/headers";
 import { headers } from "next/headers";
 
 export default async function updatePythonReview(userEmail, pythonReview) {
-  const url = headers().get("referer");
-  console.log(url);
+  const url = headers().get("referer")
   const supabase = createServerComponentClient({ cookies });
   const { data, error } = await supabase
     .from("users")
