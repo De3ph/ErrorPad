@@ -36,7 +36,7 @@ export default async function RootLayout({
             {userData ? <Sidebar user={userData} /> : <></>}
           </nav>
 
-          <section className='py-12 px-8 w-full'>{children}</section>
+          <section className='pt-10 px-8 w-full'>{children}</section>
         </main>
 
         <footer className='w-full grid items-stretch'>

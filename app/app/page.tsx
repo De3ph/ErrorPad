@@ -36,12 +36,12 @@ export default async function Index() {
   } = await supabase.auth.getUser();
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <nav className="w-full flex justify-center border-b border-b-foreground/10">
-        <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
+    <div className='w-full flex flex-col items-center'>
+      <nav className='w-full flex justify-center'>
+        <div className='w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground'>
           <Home />
         </div>
       </nav>
     </div>
-  );
+  )
 }
