@@ -5,11 +5,18 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import Sidebar from "@/components/sidebar"
 import fetchUserData from "./methods/fetchuserdata"
+import { Poppins, Montserrat } from "next/font/google"
 
 export const metadata = {
   title: "eRRoRpad",
   description: "Lets Solve the Errors Together"
 }
+
+const montserrat = Montserrat({
+  display: "swap",
+  weight: "400",
+  subsets: ["latin"]
+})
 
 export default async function RootLayout({
   children
@@ -25,7 +32,7 @@ export default async function RootLayout({
   if (user) userData = await fetchUserData(user.id)
 
   return (
-    <html lang='en'>
+    <html lang='en' className={montserrat.className}>
       <body className='grid bg-background text-black'>
         <header>
           <Header user={userData} />

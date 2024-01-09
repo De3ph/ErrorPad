@@ -39,9 +39,9 @@ const Pricing = () => {
     <div className='container mx-auto space-y-16'>
       <p className='text-3xl font-semibold text-center flex items-center justify-center gap-2'>
         Choose Your Plan
-        <p>
+        <span>
           <IconArrowDown />
-        </p>
+        </span>
       </p>
 
       <div className='flex'>

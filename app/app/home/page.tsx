@@ -4,12 +4,10 @@ import benefitsImage from "@/images/benefits.png"
 import solutionsImage from "@/images/solutions.png"
 import Image from "next/image"
 import Pricing from "./pricing"
-import {
-  SupabaseClient,
-  createServerComponentClient
-} from "@supabase/auth-helpers-nextjs"
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
+import { IconBug } from "@tabler/icons-react"
 
 const Home = async () => {
   const supabase = createServerComponentClient({ cookies })
@@ -40,6 +38,15 @@ const Home = async () => {
 
   return (
     <div className='container mx-auto mt-8 space-y-32'>
+      <div className='w-full text-center text-2xl space-y-4 font-bold p-16'>
+        <p className='text-6xl'>ErrorPad</p>
+        <p className='font-semibold flex justify-center items-center gap-1'>
+          A New Approach to Analyze{" "}
+          <span className='inline'>
+            <IconBug className='hover:text-green-400' />
+          </span>
+        </p>
+      </div>
       <section className='flex justify-between items-center'>
         <div>
           <h2 className='text-3xl font-semibold mb-4'>Features</h2>
@@ -97,7 +104,7 @@ const Home = async () => {
       <div className='space-y-20 py-32'>
         <p className='text-center text-4xl font-semibold'>
           Redefine Your Development Processes, Achieve
-          <p className='text-green-500 text-5xl'>Success</p>
+          <span className='text-green-500'> Success</span>
         </p>
         <Pricing />
       </div>
