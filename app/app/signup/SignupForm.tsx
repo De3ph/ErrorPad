@@ -55,8 +55,7 @@ function SignupForm() {
     setCheckBoxConfirm(true);
   }
   function checkMail(event: any) {
-    var email: string = event.target.value;
-    console.log(email);
+    var email: string = event.target.value
     if (email.includes(".org")) {
       setMailError(true);
     } else {

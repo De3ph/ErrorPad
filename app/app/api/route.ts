@@ -48,18 +48,6 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // const { data, error } = await supabase
-  //   .from("errors")
-  //   .insert(body?.data)
-  //   .select()
-
-  // if (error) {
-  //   console.log("🚀 ~ file: route.ts:23 ~ POST ~ error:", error)
-  //   return NextResponse.json({
-  //     message: "failed"
-  //   })
-  // }
-
   console.log("ok")
 
   return NextResponse.json({

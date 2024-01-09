@@ -29,16 +29,13 @@ function ReviewForm({ employeeLists = [{}] }: any) {
 
   const handleSubmit = async () => {
     // Seçilen kullanıcı, Python ve TypeScript incelemelerini kullanarak istediğiniz işlemi gerçekleştirin
-    console.log("Selected User:", selectedUser);
-    console.log("Python Review:", pythonReview);
-    console.log("TypeScript Review:", typescriptReview);
-    let pyResult = await updatePythonReview(selectedUser.email, pythonReview);
+    let pyResult = await updatePythonReview(selectedUser.email, pythonReview)
     let tsResult = await updateTypeScriptReview(
       selectedUser.email,
       typescriptReview
-    );
-    if (pyResult && tsResult) alert("Update is Successful!");
-    else alert("Error in update!");
+    )
+    if (pyResult && tsResult) alert("Update is Successful!")
+    else alert("Error in update!")
   };
   return (
     <div className="container mx-auto mt-8">

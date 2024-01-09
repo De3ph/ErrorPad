@@ -23,8 +23,7 @@ export default function BarChartComponent({ dataList = [{}] }) {
   const [maxValue, setMaxValue] = React.useState(0);
   React.useEffect(() => {
     if (dataList[0]) {
-      console.log(dataList);
-      setMaxValue(getMaxValue(dataList));
+      setMaxValue(getMaxValue(dataList))
     }
   }, []);
   return (

@@ -37,8 +37,7 @@ export function PopupDialog({ text, confirm }) {
             color="green"
             onClick={() => {
               setConfirm();
-              handleOpen();
-              console.log(confirm);
+              handleOpen()
             }}
           >
             <span>Confirm</span>

@@ -36,9 +36,8 @@ async function userErrors({ params }: any) {
   const session = await supabase.auth.getSession();
 
   if (session.data.session === null) {
-    return <div>Unauthorized</div>;
+    return <div>Unauthorized</div>
   }
-  console.log(params);
   const user = await fetchUserData(params.user_id);
   const errors = await fetchData(supabase, user.email);
 

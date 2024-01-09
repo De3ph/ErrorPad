@@ -27,8 +27,7 @@ export async function POST(request: Request) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  const userData = await fetchUserData(user?.id);
-  console.log(userData);
+  const userData = await fetchUserData(user?.id)
   if (userData?.role == "ADMIN") {
     const { data, error } = await supabaseAdmin.auth.admin.createUser({
       email,
