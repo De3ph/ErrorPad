@@ -13,7 +13,19 @@ import {
   ListItemSuffix,
   Chip,
   Spinner,
-} from "@material-tailwind/react";
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  IconButton,
+  Drawer,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+  Select,
+  Option,
+  Alert
+} from "@material-tailwind/react"
 
 export {
   ThemeProvider,
@@ -28,4 +40,16 @@ export {
   ListItemSuffix,
   Chip,
   Spinner,
-};
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  IconButton,
+  Drawer,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+  Select,
+  Option,
+  Alert
+}

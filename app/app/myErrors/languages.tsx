@@ -1,60 +1,41 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { List, ListItem } from "@/ui/index"
-import pythonLogo from "@/images/python.png"
-import csharpLogo from "@/images/csharp.png"
-import javaLogo from "@/images/java.png"
-import jsLogo from "@/images/js.png"
+"use client"
+import React from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { Button, List, ListItem } from "@/ui/index"
 
-const LangList = [
-  {
-    lang: "python",
-    image: pythonLogo,
-    param: "python"
-  },
-  {
-    lang: "C#",
-    image: csharpLogo,
-    param: "csharp"
-  },
-  {
-    lang: "Java",
-    image: javaLogo,
-    param: "java"
-  },
-  {
-    lang: "JavaScript",
-    image: jsLogo,
-    param: "js"
-  }
-]
+import availableLangList from "@/app/util/AvailableLangList"
+import { usePathname } from "next/navigation"
 
-function Languages() {
+function Languages({ urlLink }: any) {
+  const currentPath = usePathname()
   return (
-    <div>
-      <List className='grid grid-cols-2 md:grid-cols-3'>
-        {LangList.map((lang, index) => (
-          <Link
-            key={index}
-            className='flex items-center '
-            href={"myErrors/" + lang.param}
-          >
-            <ListItem className=' flex justify-center  items-center  gap-2'>
+    <List className='grid grid-cols-2 gap-x-8 justify-items-center'>
+      {availableLangList.map((lang, index) => (
+        <Link
+          key={index}
+          className='flex items-center'
+          href={`${currentPath}/${lang.name}`}
+        >
+          <ListItem className='hover:bg-transparent'>
+            <Button
+              variant='text'
+              className='flex justify-center items-center gap-2'
+            >
               <Image
+                className='bg-transparent'
                 src={lang.image}
-                width={32}
-                height={32}
-                alt={lang.lang + " logo"}
+                width={28}
+                height={28}
+                alt={lang.name + " logo"}
               />
-              <p>{lang.lang}</p>
-            </ListItem>
-          </Link>
-        ))}
-      </List>
-    </div>
+              <p>{lang.name}</p>
+            </Button>
+          </ListItem>
+        </Link>
+      ))}
+    </List>
   )
 }
 
-export default Languages;
+export default Languages

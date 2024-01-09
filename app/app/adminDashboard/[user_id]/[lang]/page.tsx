@@ -16,6 +16,7 @@ import { Typography } from "@/ui/index";
 import { ILangObj } from "@/app/types/Lang";
 import AvailableLangList from "@/app/util/AvailableLangList";
 import { DefaultAccordion } from "@/components/accordion";
+import fetchUserData from "@/app/methods/fetchuserdata";
 
 type ChartData = {
   errorName: string;
@@ -45,29 +46,23 @@ async function fetchData(
   }
 }
 
-async function MyErrorsInLang({
-  params: { lang: currentLangName },
-}: {
-  params: { lang: string };
-}) {
+async function userErrorInLang({ params }: any) {
   const supabase = createServerComponentClient({ cookies });
-  const user = (await supabase.auth.getUser()).data.user;
+  const user = await fetchUserData(params.user_id);
 
   const errors: any[] | undefined | null = await fetchData(
     supabase,
     user?.email as string,
-    currentLangName
+    params.lang
   );
 
-  let lang: any = AvailableLangList.find(
-    (lang) => currentLangName == lang.name
-  );
+  let lang: any = AvailableLangList.find((lang) => params.lang == lang.name);
 
-  const image = getLangImage(currentLangName);
+  const image = getLangImage(params.lang);
   let errorCount: ChartData[] = [];
 
   errors?.forEach((_: any) => {
-    if (_.lang == currentLangName.toLowerCase()) {
+    if (_.lang == params.lang.toLowerCase()) {
       var index = errorCount.findIndex(({ errorName }) => errorName == _.code);
       index == -1
         ? errorCount.push({ errorName: _.code, count: 1 })
@@ -95,15 +90,6 @@ async function MyErrorsInLang({
         <table className="w-full min-w-max table-auto text-left overflow-scroll">
           <thead>
             <tr>
-              {/* <th className='border-b border-blue-gray-100 bg-blue-gray-50 p-4'>
-                <Typography
-                  variant='small'
-                  color='blue-gray'
-                  className='font-normal leading-none opacity-70'
-                >
-                  At Line
-                </Typography>
-              </th> */}
               <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
                 <Typography
                   variant="small"
@@ -152,4 +138,4 @@ async function MyErrorsInLang({
   );
 }
 
-export default MyErrorsInLang;
+export default userErrorInLang;

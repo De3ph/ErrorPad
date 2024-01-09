@@ -32,6 +32,7 @@ export async function activate(context: vscode.ExtensionContext) {
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {
-  sendDataToServer(sessionStore)
+export async function deactivate() {
+  await sendDataToServer(sessionStore)
+  deactivate()
 }

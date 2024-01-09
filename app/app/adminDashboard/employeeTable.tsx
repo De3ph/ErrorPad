@@ -1,42 +1,36 @@
 "use client";
-import { Card, Typography } from "@/ui/index";
+import { Card, Typography, Button } from "@/ui/index";
 import { Employee } from "../types/Employee";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const headerList = [
   "Picture",
   "Name",
+  "Last Name",
   "Job",
-  "Review",
+  "Python Review",
+  "TypeScript Review",
   "Email",
-  "Employed",
-  "ID"
-]
+  "Role",
+  "Details",
+];
 
-export default function EmployeeTable({ dataList = [{}] }) {
-  const [employeeList, setEmployeeList] = useState<Employee[]>([])
-
-  useEffect(() => {
-    console.log(dataList)
-    dataList.map((employee: any) => {
-      setEmployeeList((employeeList) => [...employeeList, employee])
-    })
-  }, [])
-  console.log(employeeList)
+export default function EmployeeTable({ dataList = [{}] }: any) {
   return (
-    <Card className='max-h-[46rem] w-full overflow-scroll'>
-      <table className='w-full min-w-max table-auto text-left overflow-scroll'>
+    <Card className="max-h-[46rem] w-[75vw] overflow-scroll">
+      <table className="w-full min-w-max table-auto text-left overflow-scroll">
         <thead>
           <tr>
             {headerList.map((head: String, index: number) => (
               <th
                 key={index}
-                className='border-b border-blue-gray-100 bg-blue-gray-50 p-4'
+                className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
               >
                 <Typography
-                  variant='small'
-                  color='blue-gray'
-                  className='font-normal leading-none opacity-70'
+                  variant="small"
+                  color="blue-gray"
+                  className="font-normal leading-none opacity-70"
                 >
                   {head}
                 </Typography>
@@ -45,89 +39,109 @@ export default function EmployeeTable({ dataList = [{}] }) {
           </tr>
         </thead>
         <tbody>
-          {employeeList.map((employee: Employee, index: number) => {
-            const isLast = index === employeeList.length - 1
-            const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50"
+          {dataList.map((employee: Employee, index: number) => {
+            const isLast = index === dataList.length - 1;
+            const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 
             return (
               <tr key={employee?.id}>
                 {employee.picLink ? (
                   <td className={classes}>
                     <img
-                      className='h-16 w-16 rounded-full object-cover object-center'
+                      className="h-16 w-16 rounded-full object-cover object-center"
                       src={employee.picLink}
-                      alt='nature image'
+                      alt="nature image"
                     />
                   </td>
                 ) : (
                   <td className={classes}>
                     <img
-                      className='h-12 w-12 rounded-full object-cover object-center'
-                      src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png'
-                      alt='default image'
+                      className="h-12 w-12 rounded-full object-cover object-center"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png"
+                      alt="default image"
                     />
                   </td>
                 )}
 
                 <td className={classes}>
                   <Typography
-                    variant='small'
-                    color='blue-gray'
-                    className='font-normal'
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
                   >
-                    {employee.name}
+                    {employee.first_name}
                   </Typography>
                 </td>
                 <td className={classes}>
                   <Typography
-                    variant='small'
-                    color='blue-gray'
-                    className='font-normal'
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {employee.last_name}
+                  </Typography>
+                </td>
+                <td className={classes}>
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
                   >
                     {employee.job}
                   </Typography>
                 </td>
                 <td className={classes}>
                   <Typography
-                    variant='small'
-                    color='blue-gray'
-                    className='font-normal'
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
                   >
-                    {employee.review}
+                    {employee?.python_review || "-"}
                   </Typography>
                 </td>
                 <td className={classes}>
                   <Typography
-                    variant='small'
-                    color='blue-gray'
-                    className='font-normal'
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {employee?.typescript_review || "-"}
+                  </Typography>
+                </td>
+                <td className={classes}>
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
                   >
                     {employee.email}
                   </Typography>
                 </td>
                 <td className={classes}>
                   <Typography
-                    variant='small'
-                    color='blue-gray'
-                    className='font-normal'
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
                   >
-                    {employee.employedDate}
+                    {employee.role}
                   </Typography>
                 </td>
                 <td className={classes}>
                   <Typography
-                    variant='small'
-                    color='blue-gray'
-                    className='font-normal'
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
                   >
-                    {employee.id}
+                    <Link href={"" + employee?.id}>
+                      <Button size="sm">Details</Button>
+                    </Link>
                   </Typography>
                 </td>
               </tr>
-            )
+            );
           })}
         </tbody>
       </table>
     </Card>
-  )
+  );
 }

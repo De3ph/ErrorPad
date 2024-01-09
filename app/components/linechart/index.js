@@ -1,35 +1,36 @@
 "use client";
-import Loading from "@/app/adminDashboard/loading";
-import * as React from "react";
+import React, { useState } from "react";
 import {
-  BarChart,
-  Bar,
-  Rectangle,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Cell,
 } from "recharts";
-const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
 const getMaxValue = (array) => {
-  return Math.max(...array.map((error) => error.count));
+  return Math.max(
+    ...array.map((error) => {
+      return error.count;
+    })
+  );
 };
 
-export default function BarChartComponent({ dataList = [{}] }) {
+function LineChartComponent({ dataList = [{}] }) {
   const [maxValue, setMaxValue] = React.useState(0);
   React.useEffect(() => {
     if (dataList[0]) {
-      setMaxValue(getMaxValue(dataList))
+      setMaxValue(getMaxValue(dataList));
     }
-  }, []);
+  }, [dataList]);
+
   return (
     <div className="w-full h-[60vw] flex justify-center items-center md:max-h-[60vh]">
       <ResponsiveContainer width="95%" height="90%">
-        <BarChart
+        <LineChart
           data={dataList}
           margin={{
             top: 5,
@@ -39,25 +40,23 @@ export default function BarChartComponent({ dataList = [{}] }) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="errorName" />
+          <XAxis dataKey="month" />
           <YAxis
             type="number"
             domain={[0, Math.round(maxValue + maxValue / 2)]}
           />
           <Tooltip />
           <Legend />
-          <Bar
+          <Line
+            type="monotone"
             dataKey="count"
-            fill="#8884d8"
-            activeBar={<Rectangle fill="pink" stroke="blue" />}
-            label={{ position: "top" }}
-          >
-            {dataList.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-            ))}
-          </Bar>
-        </BarChart>
+            stroke="#8884d8"
+            activeDot={{ r: 8 }}
+          ></Line>
+        </LineChart>
       </ResponsiveContainer>
     </div>
   );
 }
+
+export default LineChartComponent;
