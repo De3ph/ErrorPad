@@ -1,4 +1,4 @@
-# Final Thesis Project
+# ErrorPad
 ## VS Code Extension + Next.js + Supabase + Material Tailwind
 
 ![architecture](https://github.com/De3ph/final-thesis/assets/62203579/2ac30e9a-41d3-4f73-a296-2cf418408334)
